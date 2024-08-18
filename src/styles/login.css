@@ -1,0 +1,56 @@
+
+#basic{
+    margin-top: 20px;
+    margin-right: 140px;
+    width: 600px;
+    max-width: 600px;
+}
+.login-container{
+   background-image: url(../images/login1.png);
+   background-repeat: no-repeat;
+   background-size: cover;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+   padding: 30px 0;
+}
+.form-container{
+    position: relative;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(55px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    margin:  auto;
+
+}
+
+hr{
+    width: 500px;
+
+}
+.ant-btn-default{
+    height: 40px;
+    width: 450px;
+    margin-bottom: 13px;
+}
+.btnSvg{
+    margin-right: 15px;
+    margin-top: 6px;
+}
+.btnS{
+    font-weight: 500;
+}
+.ant-btn-primary{
+    margin-right: 30px;
+}
+h3{
+    font-weight: 400;
+    font-size: 16px;
+}
+a{
+    text-decoration: none;
+}

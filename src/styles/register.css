@@ -1,0 +1,20 @@
+#basic{
+    margin-left: 50px;
+}
+.form-container1{
+    position: relative;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(55px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 570px;
+    margin:  auto;
+    margin-top: 235px;
+    background-repeat: no-repeat;
+}
+.ant-btn-primary{
+    margin-right: 80px;
+}

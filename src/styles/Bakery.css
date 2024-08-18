@@ -1,0 +1,91 @@
+#imgPr {
+    width: 253px;
+    height: 230px;
+    border-radius: 50px;
+    margin-top: 16px;
+    margin-left: 19px;
+}
+
+#contain {
+    padding: 50px 0;
+    background-color: #eddfc1;
+
+}
+
+#pro {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2px;
+    width: 96%;
+    margin-left: 24px;
+}
+.ant-menu-title-content{
+    color: #ecd6b2;
+}
+:where(.css-dev-only-do-not-override-j9bb5n).ant-menu-dark .ant-menu-item-selected{
+    background-color: #9a314d;
+}
+:where(.css-dev-only-do-not-override-j9bb5n).ant-menu-dark.ant-menu-horizontal >.ant-menu-item-selected{
+    background-color: #9a314d;
+}
+.ant-menu-item svg{
+    color: #ecd6b2;
+
+}
+.ant-space-item{
+    margin: 12px 0 0 0;
+}
+#post {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    /* cai nay lam cho post di vao giua */
+    margin: 0 auto;
+    padding-top: 80px;
+}
+
+#postContent {
+    margin-top: 180px;
+    width: 50%;
+    color: #9a314d;
+}
+
+#postH1 {
+    font-weight: lighter;
+    font-size: 36px;
+}
+
+#postP {
+    font-size: 24px;
+    font-weight: lighter;
+}
+
+#imgPost {
+    width: 491px;
+    height: 698px;
+}
+
+#proButton {
+    height: 40px;
+    width: 150px;
+    border-radius: 50px;
+    margin-top: -15px;
+    background-color: #eedfc1;
+    color: #9a314d;
+    font-weight: bolder;
+    font-size: 12px;
+}
+
+#proH3 {
+    font-size: 20px;
+    margin-top: -11px;
+    color: #eedfc1;
+}
+
+#proP {
+    font-size: 20px;
+    margin-top: -21px;
+    color: #eedfc1;
+
+}
