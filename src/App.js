@@ -14,9 +14,11 @@ import Home from './pages/Home';
 import Footer from './pages/Footer';
 import ProductDetail from './pages/ProductDetail';
 import Bakery from './pages/Bakery';
+import { useEffect } from 'react';
 
 // import { Switch } from 'antd';
 function App() {
+  const dataAcc = localStorage.getItem('account');
 
   const api = 'Api'
   const config = {
@@ -33,6 +35,26 @@ function App() {
 
   const analytics = getAnalytics(app);
 
+  useEffect(() => {
+    if (!dataAcc) {
+      let dataAccoount = [
+        {
+          id: 1,
+          username: 'admin',
+          email: 'admin@gmail.com',
+          password: '1',
+        },
+        {
+          id: 2,
+          username: 'admin2',
+          email: 'admin2@gmail.com',
+          password: '1',
+        }
+      ];
+
+      localStorage.setItem('account', JSON.stringify(dataAccoount));
+    }
+  }, [dataAcc])
 
 
   return (

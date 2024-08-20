@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
-import { Flex } from 'antd';
-import { Button, Checkbox, Form, Input } from 'antd';
-import { GoogleOutlined } from '@ant-design/icons';
+import { Button, Form, Input, message } from 'antd';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import '../styles/register.css'
+import React, { useState } from 'react';
+import '../styles/register.css';
+import { checkEmail } from './checkEmail';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
-    const [confirmPw,setConfirmPw] = useState()
+    const [messageApi, contextHolder] = message.useMessage();
+    const navigate = useNavigate()
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPw, setConfirmPw] = useState()
+
     const onFinish = async (values) => {
-        if(email === ''){
+        if (email === '') {
             return alert('Please enter email!')
         }
         if (password?.length < 6) {
@@ -43,117 +45,154 @@ const Register = () => {
 
     };
 
+    const handleRegister = () => {
+        let dataAccoount = JSON.parse(localStorage.getItem('account'));
+
+        if (email !== '' || password !== '' || confirmPw !== '') {
+            if (checkEmail(email)) {
+                alert('Email already exists !')
+            } else {
+                if (password === confirmPw) {
+                    dataAccoount.push({
+                        id: dataAccoount.length + 1,
+                        email: email,
+                        password: password
+                    })
+                    localStorage.setItem('account', JSON.stringify(dataAccoount))
+                    messageApi.open({
+                        type: 'success',
+                        content: 'Register success',
+                    });
+                    setTimeout(() => {
+                        navigate('/login')
+                    }, 1000);
+                } else {
+                    messageApi.open({
+                        type: 'error',
+                        content: 'Confirm Password Failed',
+                    });
+                }
+            }
+        } else {
+            messageApi.open({
+                type: 'error',
+                content: 'Please Enter Email and Password!',
+            });
+        }
+    }
+
     return (
-        <body>
-        <div class="form-container1 sign-up-container">
-		<form action="#" >
-			<h1>Sign in</h1>
-			
-      <Form
-            name="basic"
-            labelCol={{
-                span: 9,
-            }}
-            wrapperCol={{
-                span: 16,
-            }}
-            style={{
-                maxWidth: 600,
-            }
-            }
-            initialValues={{
-                remember: true,
-            }}
-            onFinish={onFinish}
-            // onFinishFailed={onFinishFailed}
-            autoComplete="off"
-        >
-            
-                <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your email!',
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-            
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your email!',
-                        },
-                    ]}
-                >
-                    <Input onChange={(e) => setEmail(e.target.value)} />
-                </Form.Item>
-            
-            <Form.Item
-      label="Password"
-      name="password"
-      rules={[
-        {
-          required: true,
-          message: 'Please input your password!',
-        },
-      ]}
-    >
-      <Input.Password onChange={(e) => setPassword(e.target.value)}  />
-    </Form.Item>
-            
-                <Form.Item
-                
-                    label="Confirm Password"
-                    name="confirmPassword"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                    ]}
-                >
-                    <Input type='password' onChange={(e) => setConfirmPw(e.target.value)}/>
-                </Form.Item>
-            
+        <div>
+            {contextHolder}
 
-                <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                >
-                </Form.Item>
+            <div class="form-container1 sign-up-container">
+                <form action="#" >
+                    <h1>Sign in</h1>
 
-            <Form.Item
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
-            >
-                
+                    <Form
+                        name="basic"
+                        labelCol={{
+                            span: 9,
+                        }}
+                        wrapperCol={{
+                            span: 16,
+                        }}
+                        style={{
+                            maxWidth: 600,
+                        }
+                        }
+                        initialValues={{
+                            remember: true,
+                        }}
+                        // onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                    >
+
+                        <Form.Item
+                            label="Username"
+                            name="username"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your email!',
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Email"
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your email!',
+                                },
+                            ]}
+                        >
+                            <Input onChange={(e) => setEmail(e.target.value)} />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Password"
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your password!',
+                                },
+                            ]}
+                        >
+                            <Input.Password onChange={(e) => setPassword(e.target.value)} />
+                        </Form.Item>
+
+                        <Form.Item
+
+                            label="Confirm Password"
+                            name="confirmPassword"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your password!',
+                                },
+                            ]}
+                        >
+                            <Input type='password' onChange={(e) => setConfirmPw(e.target.value)} />
+                        </Form.Item>
 
 
-                <Button type="primary" onClick={()=>onFinish()} >
-                    Submit
-                </Button>
+                        <Form.Item
+                            name="remember"
+                            valuePropName="checked"
+                            wrapperCol={{
+                                offset: 8,
+                                span: 16,
+                            }}
+                        >
+                        </Form.Item>
 
-            </Form.Item>
-        </Form>
+                        <Form.Item
+                            wrapperCol={{
+                                offset: 8,
+                                span: 16,
+                            }}
+                        >
 
-		</form>
-	</div>
-        
-        
-</body>
+
+
+                            <Button type="primary" onClick={() => handleRegister()} >
+                                Submit
+                            </Button>
+
+                        </Form.Item>
+                    </Form>
+
+                </form>
+            </div>
+
+
+        </div>
     )
 }
 

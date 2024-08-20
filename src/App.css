@@ -578,3 +578,13 @@ font-size: 14px;
     color:#9a314d;
     background-color: #e9d7b6;
 }
+
+.menu{
+    display: flex;
+    align-items: center !important;
+}
+.ant-menu-item{
+    display: flex !important;
+    justify-content:center !important;
+    align-items: center !important;
+}
